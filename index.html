@@ -4,12 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Memory Scramble Game</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="container">
+
+    <h1>🧠 Memory Scramble Game</h1>
+
+    <div class="settings">
+
+      <div>
+        <label>Rows:</label>
+        <input type="number" id="rows" min="2" max="6" value="4" />
+      </div>
+
+      <div>
+        <label>Columns:</label>
+        <input type="number" id="cols" min="2" max="6" value="4" />
+      </div>
+
+      <div>
+        <label>Time (seconds):</label>
+        <input type="number" id="time" min="10" value="60" />
+      </div>
+
+      <button id="startBtn">Start Game</button>
+
+    </div>
+
+    <div class="game-info">
+      <h2>⏳ Time Left: <span id="timer">0</span>s</h2>
+      <h2>🎯 Matches: <span id="matches">0</span></h2>
+    </div>
 
   </div>
 
