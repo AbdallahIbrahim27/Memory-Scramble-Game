@@ -87,6 +87,5 @@ memory-scramble-game/
 
 | Name | ID |
 |------|----|
-| [Member 1 Name] | [ID] |
-| [Member 2 Name] | [ID] |
-| [Member 3 Name] | [ID] |
+| [Abdallah Ahmed Ibrahim] | [11422025441517] |
+| [Mohamed AboNoaman AbdelFattah] | [11422024418793] |
