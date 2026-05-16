@@ -1,53 +1,4 @@
 const board = document.getElementById("gameBoard");
-const message = document.getElementById("message");
-const startBtn = document.getElementById("startBtn");
-
-const emojis = [
-  "🍎","🍌","🍇","🍉","🍒","🥝",
-  "🍍","🥑","🍓","🍋","🍑","🥥",
-  "🚗","✈️","🚀","🏀","⚽","🎮"
-];
-
-let flippedCards = [];
-let matchedPairs = 0;
-let totalPairs = 0;
-let timer;
-let timeLeft;
-
-startBtn.addEventListener("click", startGame);
-
-function startGame() {
-
-  clearInterval(timer);
-
-  const rows = parseInt(document.getElementById("rows").value);
-  const cols = parseInt(document.getElementById("cols").value);
-  const totalTime = parseInt(document.getElementById("time").value);
-
-  const totalCards = rows * cols;
-
-  if (totalCards % 2 !== 0) {
-    alert("Rows × Columns must be EVEN");
-    return;
-  }
-
-  board.innerHTML = "";
-  flippedCards = [];
-  matchedPairs = 0;
-
-  matchesElement.textContent = matchedPairs;
-  message.textContent = "";
-
-  totalPairs = totalCards / 2;
-
-  board.style.gridTemplateColumns = `repeat(${cols}, 90px)`;
-
-  let selected = emojis.slice(0, totalPairs);
-
-  let cards = [...selected, ...selected];
-
-  cards = shuffle(cards);
-
   cards.forEach((emoji) => {
 
     const card = document.createElement("div");
@@ -63,4 +14,53 @@ function startGame() {
     board.appendChild(card);
 
   });
+}
+
+function flipCard() {
+
+  if (
+    this.classList.contains("flipped") ||
+    this.classList.contains("matched") ||
+    flippedCards.length === 2
+  ) {
+    return;
+  }
+
+  this.classList.add("flipped");
+
+  flippedCards.push(this);
+
+  if (flippedCards.length === 2) {
+
+    checkMatch();
+
+  }
+}
+
+function checkMatch() {
+
+  const [card1, card2] = flippedCards;
+
+  if (card1.dataset.emoji === card2.dataset.emoji) {
+
+    card1.classList.add("matched");
+    card2.classList.add("matched");
+
+    matchedPairs++;
+
+    matchesElement.textContent = matchedPairs;
+
+    flippedCards = [];
+
+  } else {
+
+    setTimeout(() => {
+
+      card1.classList.remove("flipped");
+      card2.classList.remove("flipped");
+
+      flippedCards = [];
+
+    }, 1000);
+  }
 }
